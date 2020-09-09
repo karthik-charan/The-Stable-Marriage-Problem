@@ -12,17 +12,6 @@ gal_preferences = {
     'caroline': ['bill', 'chester', 'andrew']
 }
 
-guy_gal = {}
-guy_gal_sum = {}
-
-## Initializing the Datastructures
-for i in guy_preferences:
-    guy_gal[i]=''
-    guy_gal_sum[i] = 0
-for j in gal_preferences:
-    guy_gal[j]=''
-    guy_gal_sum[j] = 0
-
 ## Defining required methods    
 def new_over_old(woman, man_old, man_new):
     for i in gal_preferences[woman]:
@@ -31,7 +20,19 @@ def new_over_old(woman, man_old, man_new):
         elif i==man_new:
             return True
         
-def stable_marriage_algo():
+def stable_marriage_algo(guy_preferences, gal_preferences):
+    guy_gal = {}
+    guy_gal_sum = {}
+
+    ## Initializing the Datastructures
+    for i in guy_preferences:
+        guy_gal[i]=''
+        guy_gal_sum[i] = 0
+    for j in gal_preferences:
+        guy_gal[j]=''
+        guy_gal_sum[j] = 0
+
+    ## Logic
     while sum(list(guy_gal_sum.values()))<len(guy_gal):
         for i in guy_preferences:
             z = 0
@@ -60,4 +61,4 @@ def stable_marriage_algo():
 ##main function
 if __name__ == "__main__":
     print("The most stable arrangement of couples: ")
-    print(stable_marriage_algo())
+    print(stable_marriage_algo(guy_preferences, gal_preferences))
